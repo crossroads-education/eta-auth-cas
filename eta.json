@@ -1,10 +1,10 @@
 {
-  "controllerDirs": [],
+  "controllerDirs": ["controllers"],
   "css": {},
   "lifecycleDirs": [],
   "modelDirs": [],
   "redirects": {},
   "staticDirs": [],
   "transformerDirs": [],
-  "viewDirs": []
+  "viewDirs": ["views"]
 }

@@ -1,3 +1,5 @@
 *.js
 *.js.map
 package-lock.json
+/db.ts
+/eta.ts

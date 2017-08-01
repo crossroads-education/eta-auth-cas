@@ -1,9 +1,9 @@
 {
-  "name": "eta-cre-blank",
+  "name": "eta-auth-cas",
   "version": "0.0.1",
-  "description": "Blank template for Eta v2.1 modules",
-  "homepage": "https://github.com/crossroads-education/eta-cre-blank",
-  "repository": "https://github.com/crossroads-education/eta-cre-blank.git",
+  "description": "CAS authentication provider for Eta v2.1+",
+  "homepage": "https://github.com/crossroads-education/eta-auth-cas",
+  "repository": "https://github.com/crossroads-education/eta-auth-cas.git",
   "license": "MIT",
   "contributors": [
     "Alex Hicks <alex@crossroadseducation.org> (https://alexhicks.net)"
