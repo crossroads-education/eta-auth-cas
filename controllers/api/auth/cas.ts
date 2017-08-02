@@ -19,6 +19,6 @@ export default class ApiAuthCasController extends eta.IHttpController {
             email
         });
         await db.person().save(person);
-        this.redirect("/auth/cas/login");
+        this.redirect("/login");
     }
 }
