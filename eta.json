@@ -6,5 +6,7 @@
   "redirects": {},
   "staticDirs": [],
   "transformerDirs": [],
-  "viewDirs": ["views"]
+  "viewDirs": ["views"],
+  "indexes": [],
+  "name": "cre-auth-cas"
 }
