@@ -6,7 +6,7 @@ const CasStrategy = require("passport-cas2").Strategy;
 export default class CasAuthProvider extends eta.IAuthProvider {
     public getPassportStrategy(): passport.Strategy {
         return new CasStrategy({
-            casURL: eta.config.auth.cas.url
+            casURL: eta.config.modules["cre-auth-cas"].url
         }, (username: string, profile: CasProfile, done: (err: Error, user?: db.Person) => void) => {
             this.onPassportVerify(username, profile).then((person: db.Person) => {
                 done(undefined, person);
@@ -30,6 +30,10 @@ export default class CasAuthProvider extends eta.IAuthProvider {
         this.req.session["casUsername"] = person.username;
         await this.saveSession();
         this.redirect("/auth/cas/register");
+    }
+
+    public getConfigurationURL(): string {
+        return "/auth/cas/configure";
     }
 }
 
