@@ -1,12 +1,14 @@
 {
-  "controllerDirs": ["controllers"],
   "css": {},
-  "lifecycleDirs": [],
-  "modelDirs": [],
   "redirects": {},
-  "staticDirs": [],
-  "transformerDirs": [],
-  "viewDirs": ["views"],
-  "indexes": [],
+  "dirs": {
+    "controllers": [],
+    "models": [],
+    "staticFiles": [],
+    "views": [],
+    "lifecycleHandlers": [],
+    "requestTransformers": [],
+    "subpathHandlers": []
+  },
   "name": "cre-auth-cas"
 }
