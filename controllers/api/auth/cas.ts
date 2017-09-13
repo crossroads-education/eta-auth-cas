@@ -12,17 +12,17 @@ export default class ApiAuthCasController extends eta.IHttpController {
             this.res.statusCode = eta.constants.http.AccessDenied;
             return;
         }
-        let person: db.Person = await db.person().findOne({ username: this.req.session["casUsername"] });
-        if (person) {
+        let user: db.User = await db.user().findOne({ username: this.req.session["casUsername"] });
+        if (user) {
             return this.redirect("/login");
         }
-        person = new db.Person({
+        user = db.user().create({
             firstName,
             lastName,
             username: this.req.session["casUsername"],
             email
         });
-        await db.person().save(person);
+        await db.user().save(user);
         this.redirect("/login");
     }
 }
