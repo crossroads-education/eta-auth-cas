@@ -6,8 +6,7 @@ import * as db from "../../../db";
 export default class ApiAuthCasController extends eta.IHttpController {
     @eta.mvc.raw()
     @eta.mvc.post()
-    @eta.mvc.params(["firstName", "lastName", "email"])
-    public async register(firstName: string, lastName: string, email: string): Promise<void> {
+    public async register(partial: Partial<db.Person>): Promise<void> {
         if (!this.req.session["casUsername"]) {
             this.res.statusCode = eta.constants.http.AccessDenied;
             return;
@@ -16,12 +15,9 @@ export default class ApiAuthCasController extends eta.IHttpController {
         if (person) {
             return this.redirect("/login");
         }
-        person = new db.Person({
-            firstName,
-            lastName,
-            username: this.req.session["casUsername"],
-            email
-        });
+        person = new db.Person(eta._.extend({
+            username: this.req.session["casUsername"]
+        }, partial));
         await db.person().save(person);
         this.redirect("/login");
     }
