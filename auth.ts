@@ -7,8 +7,8 @@ export default class CasAuthProvider extends eta.IAuthProvider {
     public getPassportStrategy(): passport.Strategy {
         return new CasStrategy({
             casURL: eta.config.modules["cre-auth-cas"].url
-        }, (username: string, profile: CasProfile, done: (err: Error, user?: db.Person) => void) => {
-            this.onPassportVerify(username, profile).then((person: db.Person) => {
+        }, (username: string, profile: CasProfile, done: (err: Error, user?: db.User) => void) => {
+            this.onPassportVerify(username, profile).then((person: db.User) => {
                 done(undefined, person);
             }).catch(err => {
                 done(err);
@@ -16,18 +16,18 @@ export default class CasAuthProvider extends eta.IAuthProvider {
         });
     }
 
-    private async onPassportVerify(username: string, profile: CasProfile): Promise<db.Person> {
-        const person: db.Person = await db.person().findOne({ username });
-        if (person) return person;
+    private async onPassportVerify(username: string, profile: CasProfile): Promise<db.User> {
+        const user: db.User = await db.user().findOne({ username });
+        if (user) return user;
         else return <any>{ username };
     }
 
-    public async onPassportLogin(person: db.Person): Promise<void> {
-        if (person.id !== undefined) {
+    public async onPassportLogin(user: db.User): Promise<void> {
+        if (user.id !== undefined) {
             // user has a Person entry
             return;
         }
-        this.req.session["casUsername"] = person.username;
+        this.req.session["casUsername"] = user.username;
         await this.saveSession();
         this.redirect("/auth/cas/register");
     }
